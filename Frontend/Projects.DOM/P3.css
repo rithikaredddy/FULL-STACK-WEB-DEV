@@ -1,0 +1,35 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+}
+#main{
+    height: 100%;
+    width: 100%;
+    background-color: #111;
+    position: relative; 
+}
+#elem{
+    height: 120px;
+    width: 100%;
+    border-bottom: 2px solid white;
+    font-size: 2vw;
+    color: antiquewhite;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+img{
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+    position: absolute;
+    /* transform: translate(-50%,-50%) scale(1); */
+    opacity: 0;
+    transition: all linear 0.3s;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Route Mapper</title>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bus Route Mapper</h1>
+    <label for="bus-select">Select Bus Route:</label>
+    <select id="bus-select">
+        <option value="1">Bus 1</option>
+        <option value="2">Bus 2</option>
+        <!-- Add more bus route options here -->
+    </select>
+    <div id="map"></div>
+
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 13,
+                center: { lat: 17.980929, lng: 79.598312 } // Update with your college campus coordinates
+            });
+
+            var busRoutes = {
+                1: [ // Bus 1 route coordinates
+                    { lat: 17.981237, lng: 79.598398 }, // Example stop 1
+                    { lat: 17.982329, lng: 79.598802 }, // Example stop 2
+                    // Add more stop coordinates here
+                ],
+                2: [ // Bus 2 route coordinates
+                    { lat: 17.980518, lng: 79.597849 }, // Example stop 1
+                    { lat: 17.981329, lng: 79.596802 }, // Example stop 2
+                    // Add more stop coordinates here
+                ]
+                // Add more bus routes here
+            };
+
+            var selectedBus = document.getElementById('bus-select').value;
+            var busPath = new google.maps.Polyline({
+                path: busRoutes[selectedBus],
+                geodesic: true,
+                strokeColor: '#FF0000',
+                strokeOpacity: 1.0,
+                strokeWeight: 2
+            });
+
+            busPath.setMap(map);
+
+            document.getElementById('bus-select').addEventListener('change', function() {
+                var selectedBus = document.getElementById('bus-select').value;
+                busPath.setPath(busRoutes[selectedBus]);
+            });
+        }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCT19LJDonMtLf7l3bno-c28me4UjgeOwo&callback=initMap">
+    </script>
+</body>
+</html>
